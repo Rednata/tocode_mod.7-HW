@@ -1,6 +1,6 @@
 <template>
-  <Form @onSubmit="handlerSubmit"></Form>
-  <List :items="notes" @onRemove="handleRemove"/>
+  <Form></Form>
+  <List/>
 
 </template>
 
@@ -12,19 +12,6 @@ export default {
   components: { Form, List },
   data() {
     return {
-      notes: [
-        {
-          title: 'Learn Vue3',
-          tags: [{ title: 'work', isActive: true }],
-        },
-        {
-          title: 'Finish Course',
-          tags: [
-            { title: 'work', isActive: true },
-            { title: 'home', isActive: true },
-          ],
-        },
-      ],
     };
   },
   mounted() {
@@ -44,14 +31,6 @@ export default {
       if (localNotes) {
         this.notes = JSON.parse(localNotes);
       }
-    },
-    handlerSubmit({ title, tags }) {
-      console.log('tags: ', tags);
-      const note = { title, tags };
-      this.notes.push(note);
-    },
-    handleRemove(idx) {
-      this.notes.splice(idx, 1);
     },
   },
 };

@@ -1,9 +1,9 @@
 <template>
   <ul class="notes-list">
-    <li class="note-item" v-for="(note, idx) in items" :key="idx">
+    <li class="note-item" v-for="(note, idx) in notes" :key="idx">
       <div class="note-header">
         <p>{{ note.title }}</p>
-        <button class="del-btn" @click="$emit('onRemove', idx)">&#10005;</button>
+        <button class="del-btn" @click="removeNote(idx)">&#10005;</button>
       </div>
       <div class="note-footer">
         <TagsList
@@ -20,14 +20,15 @@ import TagsList from '@/components/Notes/UI/TagsList.vue';
 
 export default {
   components: { TagsList },
-  props: {
-    items: {
-      type: Array,
-      required: true,
+  methods: {
+    removeNote(idx) {
+      this.$store.dispatch('removeNote', idx);
     },
   },
-  methods: {
-
+  computed: {
+    notes() {
+      return this.$store.getters.allNotes;
+    },
   },
 };
 </script>

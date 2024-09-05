@@ -18,7 +18,7 @@
 <script>
 export default {
   mounted() {
-    console.log('this.items: ', this.items);
+
   },
   props: {
     items: {

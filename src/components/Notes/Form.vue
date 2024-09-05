@@ -12,24 +12,21 @@
 
       <button class="btn btnPrimary" type="submit">Add new note</button>
     </form>
-    <TagsList :items="tags" @onItemClick="handleTagClick"/>
+    <TagsList :items="tagsList" @onItemClick="handleTagClick"/>
   </div>
 
 </template>
 
 <script>
 import TagsList from '@/components/Notes/UI/TagsList.vue';
+import tagsList from '@/seeders/tags.json';
 
 export default {
   components: { TagsList },
   data() {
     return {
       value: '',
-      tags: [
-        { title: 'home', id: 0 },
-        { title: 'work', id: 1 },
-        { title: 'travel', id: 2 },
-      ],
+      tagsList,
     };
   },
   methods: {
@@ -41,9 +38,8 @@ export default {
       return tags;
     },
     onSubmit() {
-      // const note = { title: this.value, tags: this.tags.filter((tag) => tag.isActive) };
       const note = { title: this.value, tags: this.getActiveTags() };
-      this.$emit('onSubmit', note);
+      this.$store.dispatch('addNote', note);
       this.value = '';
       document.querySelectorAll('.tags-list .isActive').forEach((btn) => btn.classList.remove('isActive'));
     },
