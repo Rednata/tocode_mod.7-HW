@@ -20,6 +20,9 @@ import TagsList from '@/components/Notes/UI/TagsList.vue';
 
 export default {
   components: { TagsList },
+  mounted() {
+    console.log('>>>>>>>>', this.notes);
+  },
   methods: {
     removeNote(idx) {
       this.$store.dispatch('removeNote', idx);

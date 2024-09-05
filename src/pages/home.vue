@@ -14,25 +14,25 @@ export default {
     return {
     };
   },
-  mounted() {
-    this.getNotes();
-  },
-  watch: {
-    notes: {
-      handler(updateList) {
-        localStorage.setItem('notes', JSON.stringify(updateList));
-      },
-      deep: true,
-    },
-  },
-  methods: {
-    getNotes() {
-      const localNotes = localStorage.getItem('notes');
-      if (localNotes) {
-        this.notes = JSON.parse(localNotes);
-      }
-    },
-  },
+  // mounted() {
+  //   this.getNotes();
+  // },
+  // watch: {
+  //   notes: {
+  //     handler(updateList) {
+  //       localStorage.setItem('notes', JSON.stringify(updateList));
+  //     },
+  //     deep: true,
+  //   },
+  // },
+  // methods: {
+  //   getNotes() {
+  //     const localNotes = localStorage.getItem('notes');
+  //     if (localNotes) {
+  //       this.notes = JSON.parse(localNotes);
+  //     }
+  //   },
+  // },
 };
 </script>
 

@@ -3,21 +3,10 @@ import { createStore } from 'vuex';
 
 export const store = createStore({
   state: {
-    notes: [
-      {
-        title: 'Learn Vue3',
-        tags: [{ title: 'work' }],
-      },
-      {
-        title: 'Finish Course',
-        tags: [
-          { title: 'work' },
-          { title: 'home' },
-        ],
-      },
-    ],
+    notes: JSON.parse(localStorage.getItem('notes')) ? JSON.parse(localStorage.getItem('notes')) : [],
   },
   getters: {
+
     allNotes(state) {
       return state.notes;
     },
@@ -25,9 +14,11 @@ export const store = createStore({
   mutations: {
     addNote(state, note) {
       state.notes.push(note);
+      localStorage.setItem('notes', JSON.stringify(state.notes));
     },
     removeNote(state, idx) {
       state.notes.splice(idx, 1);
+      localStorage.setItem('notes', JSON.stringify(state.notes));
     },
   },
   actions: {
